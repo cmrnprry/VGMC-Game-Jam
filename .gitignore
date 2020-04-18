@@ -59,4 +59,5 @@ sysinfo.txt
 crashlytics-build.properties
 
 *.csv
+*.meta
 BodyPerceptionStudy/Assets/RESULTS/runResults.csv

@@ -23,6 +23,7 @@ public class ButtonController : MonoBehaviour
     //Allows player to choose what to post on Chirper
     public void PostOnChirper()
     {
+        GameManager.Instance.populateChirperOptions();
         chirperOptions.SetActive(true);
     }
 }
