@@ -30,16 +30,11 @@ public struct ChirpStruct
 public class ChirperTweetsReader : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
-    {
-        ReadCSVFile();
-    }
-
-    void ReadCSVFile()
+   public void ReadCSVFile()
     {
         List<ChirpStruct> list = new List<ChirpStruct>();
         List<string[]> tempList = new List<string[]>();
-        StreamReader reader = new StreamReader("C:/Users/Cam/Documents/GitHub/VGMC-Game-Jam/VGMC Game Jam/Assets/TSV/Chirps.tsv");
+        StreamReader reader = new StreamReader("./Assets/TSV/Chirps.tsv");
 
         string line;
 

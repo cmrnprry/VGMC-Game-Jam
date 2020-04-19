@@ -6,12 +6,54 @@ using TMPro;
 
 public class ButtonController : MonoBehaviour
 {
+    [Header("Pages to Show and Hide")]
+    [SerializeField] private GameObject mainPage;
+    [SerializeField] private GameObject chirperOptions;
+    [SerializeField] private GameObject start;
+    [SerializeField] private GameObject Chirpr;
+    [SerializeField] private GameObject replies;
+    [SerializeField] private GameObject icon;
+    [SerializeField] private GameObject name;
+    [SerializeField] private GameObject stats;
+    [SerializeField] private GameObject endScreen;
+    [SerializeField] private GameObject credits;
+    [SerializeField] private GameObject StartScreen;
 
-    [SerializeField] private GameObject mainPage, chirperOptions, start, Chirpr, replies, icon, name, stats;
-    [SerializeField] private Button icon1, icon2, icon3, icon4;
-    [SerializeField] private TMP_InputField user, display;
-    [SerializeField] private Animator Transition1, Transition2;
-    [SerializeField] private TextMeshProUGUI followers, cult, influence, theory, mom;
+    [Header("User Icons")]
+    [SerializeField] private Button icon1;
+    [SerializeField] private Button icon2;
+    [SerializeField] private Button icon3;
+    [SerializeField] private Button icon4;
+
+    [Header("User Input")]
+    [SerializeField] private TMP_InputField user;
+    [SerializeField] private TMP_InputField display;
+
+    [Header("Transitions")]
+    [SerializeField] private Animator Transition1;
+    [SerializeField] private Animator Transition2;
+
+    [Header("Stats")]
+    [SerializeField] private TextMeshProUGUI followers;
+    [SerializeField] private TextMeshProUGUI cult;
+    [SerializeField] private TextMeshProUGUI influence;
+    [SerializeField] private TextMeshProUGUI theory;
+    [SerializeField] private TextMeshProUGUI mom;
+
+    [Header("End Text")]
+    [SerializeField] private GameObject lose;
+    [SerializeField] private GameObject winCult;
+    [SerializeField] private GameObject winInfluence;
+    [SerializeField] private GameObject WinTheory;
+    [SerializeField] private GameObject winMom;
+
+    [Header("TSVs")]
+    [SerializeField] private ChirperOptionsReader optionsReader;
+    [SerializeField] private ChirperTweetsReader chirpsReader;
+    [SerializeField] private ChirprRepliesReader repliesReader;
+    [SerializeField] private ChirperFollowerReader followersReader;
+    [SerializeField] private ChirperTrendsReader trendsReader;
+
 
 
     void Start()
@@ -30,6 +72,25 @@ public class ButtonController : MonoBehaviour
     }
     public void GoToMain()
     {
+        //Parse Through the TSV
+        Debug.Log("1");
+
+        optionsReader.ReadCSVFile();
+        Debug.Log("2");
+
+        chirpsReader.ReadCSVFile();
+        Debug.Log("3");
+
+        repliesReader.ReadCSVFile();
+        Debug.Log("4");
+
+        followersReader.ReadCSVFile();
+        Debug.Log("5");
+
+        trendsReader.ReadCSVFile();
+
+        //Debug.Log("6");
+
         name.SetActive(false);
         mainPage.SetActive(true);
     }
@@ -61,7 +122,9 @@ public class ButtonController : MonoBehaviour
 
     public void OpenReplies()
     {
+        Transition2.gameObject.SetActive(false);
         Chirpr.SetActive(false);
+        chirperOptions.SetActive(false);
         replies.SetActive(true);
         Transition1.SetTrigger("Fade");
         StartCoroutine(WaitAndShowSecondTweet());
@@ -70,19 +133,21 @@ public class ButtonController : MonoBehaviour
     IEnumerator WaitAndShowSecondTweet()
     {
         yield return new WaitForSecondsRealtime(15f);
+        Transition2.gameObject.SetActive(true);
         Transition2.SetTrigger("Fade");
 
         if (GameManager.Instance.isSecond)
         {
             Chirpr.SetActive(true);
             replies.SetActive(false);
-            GameManager.Instance.setNextDay();
+            GameManager.Instance.setChirperSecondTweet();
         }
         else
         {
             Chirpr.SetActive(true);
             replies.SetActive(false);
-            GameManager.Instance.setChirperSecondTweet();
+            GameManager.Instance.setNextDay();
+            
         }
 
     }
@@ -110,28 +175,53 @@ public class ButtonController : MonoBehaviour
         Chirpr.SetActive(true);
     }
 
+    public void ReturntoStartScreen()
+    {
+        StartScreen.SetActive(true);
+        Chirpr.SetActive(false);
+        stats.SetActive(false);
+        replies.SetActive(false);
+        start.SetActive(false);
+        credits.SetActive(false);
+        endScreen.SetActive(false);
+        icon.SetActive(false);
+    }
+
 
     //GAME END 
+
+    public void ShowEndScreen()
+    {
+        endScreen.SetActive(true);
+    }
     public void LoseGame()
     {
         //show lose text
+        lose.SetActive(true);
     }
     public void CultistWin()
     {
         //show cult win text
+        winCult.SetActive(true);
     }
     public void MomsWin()
     {
         //show mom win text
+        winMom.SetActive(true);
+
     }
 
     public void TheoristWin()
     {
         //show theorist win text
+        WinTheory.SetActive(true);
+
     }
 
     public void StanWin()
     {
         //show stan win text
+        winInfluence.SetActive(true);
+
     }
 }

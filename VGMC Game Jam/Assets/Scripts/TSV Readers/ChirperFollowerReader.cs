@@ -6,18 +6,15 @@ using UnityEngine;
 
 public struct ChirperFollowerStruct
 {
-    public ChirperFollowerStruct(int d, int isaAain, string pic, string name, string user)
+    public ChirperFollowerStruct(int d, string pic, string name, string user)
     {
         day = d;
-        isChirpTwo = isaAain;
         profile_pic = pic;
         chirper_name = name;
         user_name = user;
     }
 
     public int day { get; }
-
-    public int isChirpTwo { get;  }
 
     public string profile_pic { get; }
     public string chirper_name { get; }
@@ -27,16 +24,11 @@ public struct ChirperFollowerStruct
 public class ChirperFollowerReader : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
-    {
-        ReadCSVFile();
-    }
-
-    void ReadCSVFile()
+    public void ReadCSVFile()
     {
         List<ChirperFollowerStruct> list = new List<ChirperFollowerStruct>();
         List<string[]> tempList = new List<string[]>();
-        StreamReader reader = new StreamReader("C:/Users/Cam/Documents/GitHub/VGMC-Game-Jam/VGMC Game Jam/Assets/TSV/Followers.tsv");
+        StreamReader reader = new StreamReader("./Assets/TSV/Followers.tsv");
 
         string line;
 
@@ -63,11 +55,10 @@ public class ChirperFollowerReader : MonoBehaviour
     ChirperFollowerStruct ToStruct(string[] data)
     {
         int d = Int32.Parse(data[0]);
-        int two = Int32.Parse(data[1]);
-        string pic = data[2];
-        string name = data[3];
-        string user = data[4];
+        string pic = data[1];
+        string name = data[2];
+        string user = data[3];
 
-        return new ChirperFollowerStruct(d, two, pic, name, user);
+        return new ChirperFollowerStruct(d, pic, name, user);
     }
 }

@@ -23,16 +23,11 @@ public struct ChirperTrendStruct
 public class ChirperTrendsReader : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
-    {
-        ReadCSVFile();
-    }
-
-    void ReadCSVFile()
+    public void ReadCSVFile()
     {
         List<ChirperTrendStruct> list = new List<ChirperTrendStruct>();
         List<string[]> tempList = new List<string[]>();
-        StreamReader reader = new StreamReader("C:/Users/Cam/Documents/GitHub/VGMC-Game-Jam/VGMC Game Jam/Assets/TSV/Trends.tsv");
+        StreamReader reader = new StreamReader("./Assets/TSV/Trends.tsv");
 
         string line;
 

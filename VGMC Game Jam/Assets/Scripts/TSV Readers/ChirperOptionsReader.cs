@@ -56,17 +56,12 @@ public struct ChirperOptionsStruct
 
 public class ChirperOptionsReader : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        ReadCSVFile();
-    }
 
-    void ReadCSVFile()
+    public void ReadCSVFile()
     {
         List<ChirperOptionsStruct> list = new List<ChirperOptionsStruct>();
         List<string[]> tempList = new List<string[]>();
-        StreamReader reader = new StreamReader("C:/Users/Cam/Documents/GitHub/VGMC-Game-Jam/VGMC Game Jam/Assets/TSV/ChirperOptions.tsv");
+        StreamReader reader = new StreamReader("./Assets/TSV/ChirperOptions.tsv");
 
         string line;
 
@@ -76,22 +71,30 @@ public class ChirperOptionsReader : MonoBehaviour
         while ((line = reader.ReadLine()) != null)
         {
             var data = line.Split('\t');
+            Debug.Log("data: length: " + data.Length);
 
             tempList.Add(data);
-
+            
         }
 
-
-        for (int i = 1; i < tempList.Count; i++)
+        for (int i = 1; i < 3; i++)
         {
+            Debug.Log("while");
             list.Add(ToStruct(tempList[i]));
         }
+        Debug.Log("after");
 
         GameManager.Instance.setChirperOptionsStruct(list);
     }
 
     ChirperOptionsStruct ToStruct(string[] data)
     {
+        foreach (string s in data)
+        {
+            Debug.Log("dtaa: " + s);
+
+        }
+
         int d = Int32.Parse(data[0]);
         int two = Int32.Parse(data[1]);
         string op1 = data[2];

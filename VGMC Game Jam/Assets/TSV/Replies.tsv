@@ -1,4 +1,85 @@
-Day	Profile Picture Name	Twitter Name	Twitter User Name	Tweet
-1	mom2	mom on the job	@mommy-of-four	Is this account sutible for all ages? I can't tell yet.
-1	cult2	the almighty	@joinus	I think you would be a good addition to our congregation
-1	cult3	looking for the one	@the-perfect-family	Will you become pur new father and husband?
+Day	Second Tweet? (0 for false, 1 for true)	Profile Picture Name	Twitter Name	Twitter User Name	Tweet
+1	0	mom2	mom on the job	@mommy-of-four	Is this account sutible for all ages? I can't tell yet.
+1	0	cult2	the almighty	@joinus	I think you would be a good addition to our congregation
+1	0	cult3	looking for the one	@the-perfect-family	Will you become our new father and husband?
+1	1	cult1	Heather	@invalid	If I follow you will you bring me to salvation?
+1	1	mom1	missing my wine	@wine-mom	Missing the days when I could be this carefee....
+1	1	mom3	JACKIE	@default123	JARED? HOW DOES THIS WORK? WHERE'S MY GRANDSON?
+2	0	influencer1	Cutie <3	@cutie-streams	New videos up now! Subscribe for new weekly content
+2	0	mom1	Wendy Smith	@wendysmith	I was called a wine mom todaya haha what is that?
+2	0	neutral1	GIVEAWAY FREE ENTRY	@notabot	LINK IN BIO FREE $100 GIFTCARD GIVEAWAY
+2	1	cult1	Heather	@invalid	Answer Me
+2	1	theorist2	[REDACTED]	@smarter-than-you	Huh... And here I thought you knew the truth...
+2	1	mom2	Susan	@mommy-of-five	My kids LOVE your account
+3	0	mom1	Mary	@funmom88	Can't get enough of your tweets! Hilarious!
+3	0				
+3	0				
+3	1				
+3	1				
+3	1				
+4	0				
+4	0				
+4	0				
+4	1				
+4	1				
+4	1				
+5	0				
+5	0				
+5	0				
+5	1				
+5	1				
+5	1				
+6	0				
+6	0				
+6	0				
+6	1				
+6	1				
+6	1				
+7	0				
+7	0				
+7	0				
+7	1				
+7	1				
+7	1				
+8	0				
+8	0				
+8	0				
+8	1				
+8	1				
+8	1				
+9	0				
+9	0				
+9	0				
+9	1				
+9	1				
+9	1				
+10	0				
+10	0				
+10	0				
+10	1				
+10	1				
+10	1				
+11	0				
+11	0				
+11	0				
+11	1				
+11	1				
+11	1				
+12	0				
+12	0				
+12	0				
+12	1				
+12	1				
+12	1				
+13	0				
+13	0				
+13	0				
+13	1				
+13	1				
+13	1				
+14	0				
+14	0				
+14	0				
+14	1				
+14	1				
+14	1				

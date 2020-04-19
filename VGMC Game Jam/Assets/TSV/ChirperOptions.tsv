@@ -1,3 +1,29 @@
-Day	Option_1	Delta	FollowerType	Option_2	Delta	FollowerType	Option_3	Delta	FollowerType	Option_4	Delta	FollowerType
-1	New account here to give you all tips and tricks to become a famous Chirper! 	15	STANS	If you give me followers, I'll give you riches	15	CULTISTS	New acount. Had to delete the old one to keep the information out of the wrong hands. More Updates to come.	15	THEROISTS	New to this whole "Chirper" thing. Have you Guys seen those little yellow boys? So Funny! Kids Love them!	15	MOMS
-2	If you Rechirp my tweet trust I’ll know what it means. #Truebelief	30	CULTISTS	My son just showed me a video of his friend on the internet doing some dance! My boys surround themselves with such talent :)	30	MOMS	Thinking of doing makeup tutorials on my main, would any of you be interested in some skincare routines and eye looks? 	30	STANS	I don't think they can track me here. Don't use real names or talk about this on the outside. Anyone can be a spy. #StayWoke	30	THEROISTS
+Day	Second Tweet? (0 for false, 1 for true)	Option_1	Delta	FollowerType	Option_2	Delta	FollowerType	Option_3	Delta	FollowerType	Option_4	Delta	FollowerType
+1	0	New account here to give you all tips and tricks to become a famous Chirper! 	15	STANS	If you give me followers, I'll give you riches	15	CULTISTS	New acount. Had to delete the old one to keep the information out of the wrong hands. More Updates to come.	15	THEROISTS	New to this whole "Chirper" thing. Have you Guys seen those little yellow boys? So Funny! Kids Love them!	15	MOMS
+1	1	If you Rechirp my tweet trust I’ll know what it means. #Truebelief	30	CULTISTS	My son just showed me a video of his friend on the internet doing some dance! My boys surround themselves with such talent :)	30	MOMS	Thinking of doing makeup tutorials on my main, would any of you be interested in some skincare routines and eye looks? 	30	STANS	I don't think they can track me here. Don't use real names or talk about this on the outside. Anyone can be a spy. #StayWoke	30	THEROISTS
+2	0	The government doesn't want you to know the real reason popcorn pops.	100	THEORISTS	Love these new hair vitamins by HairEvo I've been taking! Use code INFLUENCE for 11% off your first order!	100	STANS	We all have so many friends on social media, but are you really my friends? Drop your favorite memory of me below. Then share on your feed to keep connection alive :)	100	MOMS	The common folk believe in a higher power. Little do they know that higher power walks among them. And that higher power is having cereal for breakfast.	100	CULTISTS
+2	1	Went for a walk with Sheila today. That girlie just gets me!!! Lots of Laughs *laughing emoji*	150	MOMS	It's astonishing what these sheeple will look past nowadays. Keep the wool out of your eyes people. Stay alert to the truth. 	150	THEORISTS	If your friends question my teachings it simply means they do not understand and can never understand. Denounce them	150	CULTISTS	Follow my friend @trixiestan for more style tips!	150	STANS
+3	0	Sending out a chirp to let you guys know I'm working on something really exciting to come!! #fashionfebruary	400	STANS	Today do not eat anything yellow. It is against my teachings, and trust me I will know	400	CULTISTS	Bannna trails. Look it up. If what you see doesn't open your eyes you're not looking hard enough 	400	THEORISTS	google.com cute red shoes	400	MOMS
+3	1	@GuyFieri I believe our views for the future of society allign. DM me if you'd like to expand your mindview.	1000	CULTISTS	Of course I have a balanced diet... Chocolate in BOTH hands!!!	1000	MOMS	SO excited to announce I'm releasing my own line of cosmetics! Demon Girl Cosmetics launches tomorrow!	1000	STANS	Chirper owns the FBI. Look it up. May move to something more secure...	1000	THEORISTS
+4	0	The minions franchise is simply a delivery device for the ideals of the modern governmental system. Do NOT watch. Do NOT give in.	2500	THEORISTS	Wanna revolutionize your hair? Use my code INFLUENCE for 8% off half your first order!!	2500	STANS	Minions? More like Momloves! Can't get enough of those little yellow guys! <3 	2500	MOMS	The earth is neither flat nor round. Only I can see the true shape. Follow me for the reveal of a life time. 	2500	CULTISTS
+4	1	Excercise? I thought you said "Extra Fries"! LOL	5000	MOMS	Jogging is just institutionalized running from the man. R E A L I Z E	5000	THEORISTS	Run to the park wearing purple. It shows the nonbelievers we are worthy.	5000	CULTISTS		5000	STANS
+5	0												
+5	1												
+6	0												
+6	1												
+7	0												
+7	1												
+8	0												
+8	1												
+9	0												
+9	1												
+10	0												
+10	1												
+11	0												
+11	1												
+12	0												
+12	1												
+13	0												
+13	1												
+14	0												
+14	1												

@@ -6505,7 +6505,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &641630691
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10117,41 +10117,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSecond: 0
   nextDay: 0
-  winningFollowers: 10000
+  winningFollowers: 0
   profileName: 
   userName: 
   displayName: 
   userChirp: 
   bc: {fileID: 1904528301}
   profiles:
-  - {fileID: 21300000, guid: 3e7be36eda6e2e4468b1a9ab9e8e0fd3, type: 3}
-  - {fileID: 21300000, guid: 698e486380c3f214bb1da9abe16edfa0, type: 3}
-  - {fileID: 21300000, guid: 7a6673ce58305b94e8ccf4b824078567, type: 3}
-  - {fileID: 21300000, guid: 1f2502893dbddfb4f8806ae36c3b97b0, type: 3}
-  - {fileID: 21300000, guid: 8c4b6371d3663254e93a58c8588c8904, type: 3}
-  - {fileID: 21300000, guid: caf7c21c3b293ec4baf75ed587a2b431, type: 3}
-  - {fileID: 21300000, guid: f74933f61ea5d5e4cb0c5508a34fbc1e, type: 3}
-  - {fileID: 21300000, guid: 675c2a6f2159fb44380cb7d9c9ac7080, type: 3}
-  - {fileID: 21300000, guid: d08dac153abb08c4084a6bb22ff46ce9, type: 3}
-  - {fileID: 21300000, guid: 21309bf0112d79c40be8fcdb5de68d6f, type: 3}
-  - {fileID: 21300000, guid: 583123ad015159644b3a91792c206e9d, type: 3}
-  - {fileID: 21300000, guid: 975beb05660c8e04483f48da51b539bd, type: 3}
-  - {fileID: 21300000, guid: 525326454525dea4b8a6874663ebb1cd, type: 3}
-  - {fileID: 21300000, guid: 2605fe8db05dc7b49a6fa7ddc6827bcb, type: 3}
-  - {fileID: 21300000, guid: 97d41b70e73aeaf439091aa74899cfb0, type: 3}
-  - {fileID: 21300000, guid: f0ffa51f607367e438726c7447795497, type: 3}
-  - {fileID: 21300000, guid: 9238029940bb4a14c8c1514a759cfab0, type: 3}
-  - {fileID: 21300000, guid: 244522271f768f14e96aafdd0b2988f0, type: 3}
-  - {fileID: 21300000, guid: f120d07a82e0a6841bc9aa3ccf6c9ee2, type: 3}
-  - {fileID: 21300000, guid: d148dd93b822bf944b7ab0f44ea155f8, type: 3}
-  - {fileID: 21300000, guid: a73661da0a200bb459a0d7f64a26b3a7, type: 3}
-  - {fileID: 21300000, guid: 01264d9ec3a9d7d47926768ca9b9b2ec, type: 3}
-  - {fileID: 21300000, guid: a222db21dee88e848aa37512c50cc44e, type: 3}
-  - {fileID: 21300000, guid: 22912aaf7a7a8c04d98c33a7ebb82730, type: 3}
-  - {fileID: 21300000, guid: 450f1900fe22ed6498e9e19e12434a56, type: 3}
-  - {fileID: 21300000, guid: f030d42ff8f46c0498311950c1873914, type: 3}
-  - {fileID: 21300000, guid: ea983eda669aee54284fee819d6180f0, type: 3}
-  - {fileID: 21300000, guid: b31e682ed12385443a827caedf388f3f, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   p1: {fileID: 529216051}
   p2: {fileID: 1744384376}
   Option1: {fileID: 631104664}
@@ -16827,11 +16809,11 @@ MonoBehaviour:
   influence: {fileID: 2004247661}
   theory: {fileID: 1703646699}
   mom: {fileID: 2143609471}
-  lose: {fileID: 592288861}
-  winCult: {fileID: 420192218}
-  winInfluence: {fileID: 1638662536}
-  WinTheory: {fileID: 1280748283}
-  winMom: {fileID: 1553102710}
+  lose: {fileID: 0}
+  winCult: {fileID: 0}
+  winInfluence: {fileID: 0}
+  WinTheory: {fileID: 0}
+  winMom: {fileID: 0}
   optionsReader: {fileID: 572274831}
   chirpsReader: {fileID: 572274829}
   repliesReader: {fileID: 572274832}

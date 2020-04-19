@@ -30,16 +30,11 @@ public class ChirprRepliesReader : MonoBehaviour
 {
 
     // Start is called before the first frame update
-    void Start()
-    {
-        ReadCSVFile();
-    }
-
-    void ReadCSVFile()
+    public void ReadCSVFile()
     {
         List<RepliesStruct> list = new List<RepliesStruct>();
         List<string[]> tempList = new List<string[]>();
-        StreamReader reader = new StreamReader("C:/Users/Cam/Documents/GitHub/VGMC-Game-Jam/VGMC Game Jam/Assets/TSV/Replies.tsv");
+        StreamReader reader = new StreamReader("./Assets/TSV/Replies.tsv");
 
         string line;
 

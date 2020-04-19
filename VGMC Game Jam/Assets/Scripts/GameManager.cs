@@ -126,6 +126,8 @@ public class GameManager : MonoBehaviour
     //EndGame
     private void endGame()
     {
+        bc.ShowEndScreen();
+
         if (totalFollowers > winningFollowers)
         {
             if (totalCultist > Mathf.Max(totalMoms, Mathf.Max(totalStans, totalTheorists)) )
@@ -161,9 +163,6 @@ public class GameManager : MonoBehaviour
     {
         chirperChirpData = data;
         populateChirperChirps();
-
-        p1.sprite = userProfile;
-        p2.sprite = userProfile;
     }
 
     public void setChirperTrendsData(List<ChirperTrendStruct> data)
@@ -258,9 +257,9 @@ public class GameManager : MonoBehaviour
                 break;
             }
         }
-        
 
-        foreach(Sprite img in profiles)
+
+        foreach (Sprite img in profiles)
         {
             if (data_one.profile_pic == img.name)
             {
@@ -440,6 +439,8 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        p1.sprite = userProfile;
+        p2.sprite = userProfile;
         ReplyImage[0].sprite = userProfile;
         ReplyNameText[0].text = displayName;
         ReplyUserText[0].text = userName;
@@ -474,7 +475,7 @@ public class GameManager : MonoBehaviour
     {
         return totalFollowers;
     }
-
+    
     public int getTotalCult()
     {
         return totalCultist;
