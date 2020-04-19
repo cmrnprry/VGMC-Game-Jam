@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour
     private List<ChirpStruct> chirperChirpData = new List<ChirpStruct>();
     private List<ChirperTrendStruct> chirperTrendsData = new List<ChirperTrendStruct>();
     private List<ChirperFollowerStruct> chirperFollowerData = new List<ChirperFollowerStruct>();
+    private List<RepliesStruct> chirperRepliesData = new List<RepliesStruct>();
+
+    //Button Controller Reference
+    [SerializeField] private ButtonController bc;
 
     //Types of followers
     public enum FollowerType { CULTISTS = 0, MOMS = 1, THEROISTS = 2, STANS = 3 };
@@ -52,6 +56,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] FollowNameText;
     [SerializeField] private TextMeshProUGUI[] FollowUserText;
     [SerializeField] private Image[] FollowImage;
+
+    [Header("Replies")]
+    [SerializeField] private TextMeshProUGUI[] ReplyTitleText;
+    [SerializeField] private TextMeshProUGUI[] ReplyChirpText;
+    [SerializeField] private TextMeshProUGUI[] ReplyNumberText;
+    [SerializeField] private TextMeshProUGUI[] ReplyNameText;
+    [SerializeField] private TextMeshProUGUI[] ReplyUserText;
+    [SerializeField] private TextMeshProUGUI[] ReplyContentText;
+    [SerializeField] private Image[] ReplyImage;
+    [SerializeField] private Animator Transition;
 
 
     // Start is called before the first frame update
@@ -121,6 +135,12 @@ public class GameManager : MonoBehaviour
     {
         chirperFollowerData = data;
         populateFollowersChirps();
+    }    
+    
+    public void setChirperRepliesData(List<RepliesStruct> data)
+    {
+        chirperRepliesData = data;
+        populateRepliesChirps();
     }
 
     //Populaters
@@ -132,6 +152,23 @@ public class GameManager : MonoBehaviour
         Option2Text.text = data.option_2;
         Option3Text.text = data.option_3;
         Option4Text.text = data.option_4;
+
+        //Set the Buttons
+        Option1.onClick.AddListener(delegate { SetButton(data.type_1, data.delta_1); });
+        Option2.onClick.AddListener(delegate { SetButton(data.type_2, data.delta_2); });
+        Option3.onClick.AddListener(delegate { SetButton(data.type_3, data.delta_3); });
+        Option4.onClick.AddListener(delegate { SetButton(data.type_4, data.delta_4); });
+    }
+
+    public void SetButton(GameManager.FollowerType t, int d)
+    {
+        
+        Debug.Log("here");
+        bc.OpenReplies();
+        Transition.SetTrigger("Fade");
+        addFollower(t, d);
+
+
     }
 
     //This is gonna be some bad code, I'm sorry
@@ -194,6 +231,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        //Normal Trends
         ChirpChirpText[0].text = data_one.trending_chirp;
         ChirpNumberText[0].text = data_one.trending_number;
         ChirpTitleText[0].text = data_one.trending_title;
@@ -214,7 +252,28 @@ public class GameManager : MonoBehaviour
         ChirpNumberText[4].text = data_five.trending_number;
         ChirpTitleText[4].text = data_five.trending_title;
 
-    }
+        //Replies Trends
+        ReplyChirpText[0].text = data_one.trending_chirp;
+        ReplyNumberText[0].text = data_one.trending_number;
+        ReplyTitleText[0].text = data_one.trending_title;
+
+        ReplyChirpText[1].text = data_two.trending_chirp;
+        ReplyNumberText[1].text = data_two.trending_number;
+        ReplyTitleText[1].text = data_two.trending_title;
+
+        ReplyChirpText[2].text = data_three.trending_chirp;
+        ReplyNumberText[2].text = data_three.trending_number;
+        ReplyTitleText[2].text = data_three.trending_title;
+
+        ReplyChirpText[3].text = data_four.trending_chirp;
+        ReplyNumberText[3].text = data_four.trending_number;
+        ReplyTitleText[3].text = data_four.trending_title;
+
+        ReplyChirpText[4].text = data_five.trending_chirp;
+        ReplyNumberText[4].text = data_five.trending_number;
+        ReplyTitleText[4].text = data_five.trending_title;
+
+}
 
     public void populateFollowersChirps()
     {
@@ -251,5 +310,55 @@ public class GameManager : MonoBehaviour
         FollowImage[1].sprite = image2;
         FollowNameText[1].text = data_two.chirper_name;
         FollowUserText[1].text = data_two.user_name;
+    }
+
+    public void populateRepliesChirps()
+    {
+        RepliesStruct data_one = chirperRepliesData[0], data_two = chirperRepliesData[0], data_three = chirperRepliesData[0];
+        Sprite image = null, image2 = null, image3 = null;
+
+        for (int i = 0; i < chirperFollowerData.Count; i++)
+        {
+            if (chirperFollowerData[i].day == day)
+            {
+                data_one = chirperRepliesData[i + 0];
+                data_two = chirperRepliesData[i + 1];
+                data_three = chirperRepliesData[i + 2];
+                break;
+            }
+        }
+
+        foreach (Sprite img in profiles)
+        {
+            if (data_one.profile_pic == img.name)
+            {
+                image = img;
+            }
+
+            if (data_two.profile_pic == img.name)
+            {
+                image2 = img;
+            }
+
+            if (data_two.profile_pic == img.name)
+            {
+                image3 = img;
+            }
+        }
+
+        ReplyImage[0].sprite = image;
+        ReplyNameText[0].text = data_one.chirper_name;
+        ReplyUserText[0].text = data_one.user_name;
+        ReplyContentText[0].text = data_one.chirp_content;
+
+        ReplyImage[1].sprite = image2;
+        ReplyNameText[1].text = data_two.chirper_name;
+        ReplyUserText[1].text = data_two.user_name;
+        ReplyContentText[0].text = data_two.chirp_content;
+
+        ReplyImage[2].sprite = image2;
+        ReplyNameText[2].text = data_three.chirper_name;
+        ReplyUserText[2].text = data_three.user_name;
+        ReplyContentText[0].text = data_three.chirp_content;
     }
 }
