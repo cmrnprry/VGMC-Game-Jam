@@ -7,9 +7,10 @@ using UnityEngine;
 
 public struct ChirpStruct
 {
-    public ChirpStruct(int d, string pic, string name, string user, string content)
+    public ChirpStruct(int d, int isAgain, string pic, string name, string user, string content)
     {
         day = d;
+        isChirpTwo = isAgain;
         profile_pic = pic;
         chirper_name = name;
         user_name = user;
@@ -17,6 +18,7 @@ public struct ChirpStruct
     }
 
     public int day { get; }
+    public int isChirpTwo { get; }
 
     public string profile_pic { get; }
     public string chirper_name { get; }
@@ -65,12 +67,13 @@ public class ChirperTweetsReader : MonoBehaviour
     ChirpStruct ToStruct(string[] data)
     {
         int d = Int32.Parse(data[0]);
-        string pic = data[1];
-        string name = data[2];
-        string user = data[3];
-        string content = data[4];
+        int two = Int32.Parse(data[1]);
+        string pic = data[2];
+        string name = data[3];
+        string user = data[4];
+        string content = data[5];
        
-        return new ChirpStruct(d, pic, name, user, content);
+        return new ChirpStruct(d, two, pic, name, user, content);
     }
 
 }

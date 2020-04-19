@@ -6,15 +6,18 @@ using UnityEngine;
 
 public struct ChirperFollowerStruct
 {
-    public ChirperFollowerStruct(int d, string pic, string name, string user)
+    public ChirperFollowerStruct(int d, int isaAain, string pic, string name, string user)
     {
         day = d;
+        isChirpTwo = isaAain;
         profile_pic = pic;
         chirper_name = name;
         user_name = user;
     }
 
     public int day { get; }
+
+    public int isChirpTwo { get;  }
 
     public string profile_pic { get; }
     public string chirper_name { get; }
@@ -60,10 +63,11 @@ public class ChirperFollowerReader : MonoBehaviour
     ChirperFollowerStruct ToStruct(string[] data)
     {
         int d = Int32.Parse(data[0]);
-        string pic = data[1];
-        string name = data[2];
-        string user = data[3];
+        int two = Int32.Parse(data[1]);
+        string pic = data[2];
+        string name = data[3];
+        string user = data[4];
 
-        return new ChirperFollowerStruct(d, pic, name, user);
+        return new ChirperFollowerStruct(d, two, pic, name, user);
     }
 }

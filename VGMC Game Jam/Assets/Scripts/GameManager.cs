@@ -13,6 +13,14 @@ public class GameManager : MonoBehaviour
     //Approval rating
     private int day, totalCultist, totalMoms, totalTheorists, totalStans, totalFollowers;
 
+    //checks tweets and repopulates
+    public bool isSecond, nextDay;
+    public int winningFollowers;
+
+    //Players Profile, user and display name
+    public string profileName, userName, displayName, userChirp;
+    private Sprite userProfile;
+
     //Data from the TSV
     private List<ChirperOptionsStruct> chirperOptionsData = new List<ChirperOptionsStruct>();
     private List<ChirpStruct> chirperChirpData = new List<ChirpStruct>();
@@ -29,6 +37,8 @@ public class GameManager : MonoBehaviour
     //List of profile Pictures
     [Header("Profile Photos")]
     [SerializeField] private List<Sprite> profiles = new List<Sprite>();
+    [SerializeField] private Image p1, p2;
+
 
     //Objects To be Populated
     [Header("Chirper Options")]
@@ -65,7 +75,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] ReplyUserText;
     [SerializeField] private TextMeshProUGUI[] ReplyContentText;
     [SerializeField] private Image[] ReplyImage;
-    [SerializeField] private Animator Transition;
 
 
     // Start is called before the first frame update
@@ -114,6 +123,34 @@ public class GameManager : MonoBehaviour
         totalFollowers += delta;
     }
 
+    //EndGame
+    private void endGame()
+    {
+        if (totalFollowers > winningFollowers)
+        {
+            if (totalCultist > Mathf.Max(totalMoms, Mathf.Max(totalStans, totalTheorists)) )
+            {
+                bc.CultistWin();
+            }
+            else if (totalMoms > Mathf.Max(totalCultist, Mathf.Max(totalStans, totalTheorists)))
+            {
+                bc.MomsWin();
+            }
+            else if (totalTheorists > Mathf.Max(totalMoms, Mathf.Max(totalStans, totalCultist)))
+            {
+                bc.TheoristWin();
+            }
+            else if (totalStans > Mathf.Max(totalMoms, Mathf.Max(totalCultist, totalTheorists)))
+            {
+                bc.StanWin();
+            }
+        }
+        else
+        {
+            bc.LoseGame();
+        }
+    }
+
     //Setters from their respective Reader
     public void setChirperOptionsStruct(List<ChirperOptionsStruct> data)
     {
@@ -124,6 +161,9 @@ public class GameManager : MonoBehaviour
     {
         chirperChirpData = data;
         populateChirperChirps();
+
+        p1.sprite = userProfile;
+        p2.sprite = userProfile;
     }
 
     public void setChirperTrendsData(List<ChirperTrendStruct> data)
@@ -143,10 +183,45 @@ public class GameManager : MonoBehaviour
         populateRepliesChirps();
     }
 
+    public void setChirperSecondTweet()
+    {
+        isSecond = true;
+        rePopulate();
+    }
+
+    public void setNextDay()
+    {
+        isSecond = false;
+        bc.ShowStats();
+
+        if(day >= 14)
+        {
+            endGame();
+        }
+
+        day++;
+        rePopulate();
+    }
+
+    public void SetButton(GameManager.FollowerType t, int d, string chirp)
+    {
+        userChirp = chirp;
+        bc.OpenReplies();
+        addFollower(t, d);
+    }
+
     //Populaters
+    //This is gonna be some bad code, I'm sorry
     public void populateChirperOptions()
     {
         ChirperOptionsStruct data = chirperOptionsData[day - 1];
+        
+        if (isSecond)
+        {
+            data = chirperOptionsData[day];
+        }
+
+       
 
         Option1Text.text = data.option_1;
         Option2Text.text = data.option_2;
@@ -154,24 +229,12 @@ public class GameManager : MonoBehaviour
         Option4Text.text = data.option_4;
 
         //Set the Buttons
-        Option1.onClick.AddListener(delegate { SetButton(data.type_1, data.delta_1); });
-        Option2.onClick.AddListener(delegate { SetButton(data.type_2, data.delta_2); });
-        Option3.onClick.AddListener(delegate { SetButton(data.type_3, data.delta_3); });
-        Option4.onClick.AddListener(delegate { SetButton(data.type_4, data.delta_4); });
+        Option1.onClick.AddListener(delegate { SetButton(data.type_1, data.delta_1, data.option_1); });
+        Option2.onClick.AddListener(delegate { SetButton(data.type_2, data.delta_2, data.option_2); });
+        Option3.onClick.AddListener(delegate { SetButton(data.type_3, data.delta_3, data.option_3); });
+        Option4.onClick.AddListener(delegate { SetButton(data.type_4, data.delta_4, data.option_4); });
     }
 
-    public void SetButton(GameManager.FollowerType t, int d)
-    {
-        
-        Debug.Log("here");
-        bc.OpenReplies();
-        Transition.SetTrigger("Fade");
-        addFollower(t, d);
-
-
-    }
-
-    //This is gonna be some bad code, I'm sorry
     public void populateChirperChirps()
     {
         ChirpStruct data_one = chirperChirpData[0], data_two = chirperChirpData[0];
@@ -179,10 +242,19 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < chirperChirpData.Count; i++)
         {
+            if (isSecond)
+            {
+                data_one = chirperChirpData[i + 2];
+                data_two = chirperChirpData[i + 3];
+
+                break;
+            }
+
             if (chirperChirpData[i].day == day)
             {
                 data_one = chirperChirpData[i];
                 data_two = chirperChirpData[i + 1];
+
                 break;
             }
         }
@@ -282,6 +354,14 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < chirperFollowerData.Count; i++)
         {
+
+            if (isSecond)
+            {
+                data_one = chirperFollowerData[i + 2];
+                data_two = chirperFollowerData[i + 3];
+                break;
+            }
+
             if (chirperFollowerData[i].day == day)
             {
                 data_one = chirperFollowerData[i];
@@ -316,9 +396,18 @@ public class GameManager : MonoBehaviour
     {
         RepliesStruct data_one = chirperRepliesData[0], data_two = chirperRepliesData[0], data_three = chirperRepliesData[0];
         Sprite image = null, image2 = null, image3 = null;
+        ;
 
         for (int i = 0; i < chirperFollowerData.Count; i++)
         {
+            if (isSecond)
+            {
+                data_one = chirperRepliesData[i + 3];
+                data_two = chirperRepliesData[i + 4];
+                data_three = chirperRepliesData[i + 5];
+                break;
+            }
+
             if (chirperFollowerData[i].day == day)
             {
                 data_one = chirperRepliesData[i + 0];
@@ -340,25 +429,69 @@ public class GameManager : MonoBehaviour
                 image2 = img;
             }
 
-            if (data_two.profile_pic == img.name)
+            if (data_three.profile_pic == img.name)
             {
                 image3 = img;
             }
+
+            if (profileName == img.name)
+            {
+                userProfile = img;
+            }
         }
 
-        ReplyImage[0].sprite = image;
-        ReplyNameText[0].text = data_one.chirper_name;
-        ReplyUserText[0].text = data_one.user_name;
-        ReplyContentText[0].text = data_one.chirp_content;
+        ReplyImage[0].sprite = userProfile;
+        ReplyNameText[0].text = displayName;
+        ReplyUserText[0].text = userName;
+        ReplyContentText[0].text = userChirp;
 
-        ReplyImage[1].sprite = image2;
+        ReplyImage[1].sprite = image;
         ReplyNameText[1].text = data_two.chirper_name;
         ReplyUserText[1].text = data_two.user_name;
-        ReplyContentText[0].text = data_two.chirp_content;
+        ReplyContentText[1].text = data_two.chirp_content;
 
         ReplyImage[2].sprite = image2;
-        ReplyNameText[2].text = data_three.chirper_name;
-        ReplyUserText[2].text = data_three.user_name;
-        ReplyContentText[0].text = data_three.chirp_content;
+        ReplyNameText[2].text = data_two.chirper_name;
+        ReplyUserText[2].text = data_two.user_name;
+        ReplyContentText[2].text = data_two.chirp_content;
+
+        ReplyImage[3].sprite = image3;
+        ReplyNameText[3].text = data_three.chirper_name;
+        ReplyUserText[3].text = data_three.user_name;
+        ReplyContentText[3].text = data_three.chirp_content;
+    }
+
+    public void rePopulate()
+    {
+        populateChirperChirps();
+        populateTrendsChirps();
+        populateFollowersChirps();
+        populateRepliesChirps();
+    }
+
+    //Getters
+    public int getTotalFollowers()
+    {
+        return totalFollowers;
+    }
+
+    public int getTotalCult()
+    {
+        return totalCultist;
+    }
+
+    public int getTotalMoms()
+    {
+        return totalMoms;
+    }
+
+    public int getTotalTheory()
+    {
+        return totalTheorists;
+    }
+
+    public int getTotalStans()
+    {
+        return totalStans;
     }
 }

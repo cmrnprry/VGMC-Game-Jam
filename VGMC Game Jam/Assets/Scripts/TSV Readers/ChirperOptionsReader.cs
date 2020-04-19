@@ -8,13 +8,14 @@ using UnityEngine;
 
 public struct ChirperOptionsStruct
 {
-    public ChirperOptionsStruct(int d,
+    public ChirperOptionsStruct(int d, int isAgain,
         string op1, int delta1, GameManager.FollowerType type1,
         string op2, int delta2, GameManager.FollowerType type2,
         string op3, int delta3, GameManager.FollowerType type3,
         string op4, int delta4, GameManager.FollowerType type4)
     {
         day = d;
+        isChirpTwo = isAgain;
 
         delta_1 = delta1;
         delta_2 = delta2;
@@ -33,6 +34,7 @@ public struct ChirperOptionsStruct
     }
 
     public int day { get; }
+    public int isChirpTwo { get; }
 
     public int delta_1 { get; }
     public int delta_2 { get; }
@@ -91,23 +93,24 @@ public class ChirperOptionsReader : MonoBehaviour
     ChirperOptionsStruct ToStruct(string[] data)
     {
         int d = Int32.Parse(data[0]);
-        string op1 = data[1];
-        int delta1 = Int32.Parse(data[2]);
-        GameManager.FollowerType type1 = determineType(data[3]);
+        int two = Int32.Parse(data[1]);
+        string op1 = data[2];
+        int delta1 = Int32.Parse(data[3]);
+        GameManager.FollowerType type1 = determineType(data[4]);
 
-        string op2 = data[4];
-        int delta2 = Int32.Parse(data[5]);
-        GameManager.FollowerType type2 = determineType(data[6]);
+        string op2 = data[5];
+        int delta2 = Int32.Parse(data[6]);
+        GameManager.FollowerType type2 = determineType(data[7]);
 
-        string op3 = data[7];
-        int delta3 = Int32.Parse(data[8]);
-        GameManager.FollowerType type3 = determineType(data[9]);
+        string op3 = data[8];
+        int delta3 = Int32.Parse(data[9]);
+        GameManager.FollowerType type3 = determineType(data[10]);
 
-        string op4 = data[10];
-        int delta4 = Int32.Parse(data[11]);
-        GameManager.FollowerType type4 = determineType(data[12]);
+        string op4 = data[11];
+        int delta4 = Int32.Parse(data[12]);
+        GameManager.FollowerType type4 = determineType(data[13]);
 
-        return new ChirperOptionsStruct(d,
+        return new ChirperOptionsStruct(d, two,
         op1, delta1, type1,
         op2, delta2, type2,
         op3, delta3, type3,
