@@ -14,12 +14,6 @@ public class ButtonController : MonoBehaviour
 
     }
 
-    //Goes to the home page of Instant Pic
-    public void GoToInstantPic()
-    {
-
-    }
-
     //Allows player to choose what to post on Chirper
     public void PostOnChirper()
     {

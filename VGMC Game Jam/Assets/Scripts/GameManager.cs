@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private List<ChirperOptionsStruct> chirperOptionsData = new List<ChirperOptionsStruct>();
     private List<ChirpStruct> chirperChirpData = new List<ChirpStruct>();
     private List<ChirperTrendStruct> chirperTrendsData = new List<ChirperTrendStruct>();
+    private List<ChirperFollowerStruct> chirperFollowerData = new List<ChirperFollowerStruct>();
 
     //Types of followers
     public enum FollowerType { CULTISTS = 0, MOMS = 1, THEROISTS = 2, STANS = 3 };
@@ -46,6 +47,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] ChirpTitleText;
     [SerializeField] private TextMeshProUGUI[] ChirpChirpText;
     [SerializeField] private TextMeshProUGUI[] ChirpNumberText;
+
+    [Header("Chirper Who to Follow")]
+    [SerializeField] private TextMeshProUGUI[] FollowNameText;
+    [SerializeField] private TextMeshProUGUI[] FollowUserText;
+    [SerializeField] private Image[] FollowImage;
 
 
     // Start is called before the first frame update
@@ -94,6 +100,7 @@ public class GameManager : MonoBehaviour
         totalFollowers += delta;
     }
 
+    //Setters from their respective Reader
     public void setChirperOptionsStruct(List<ChirperOptionsStruct> data)
     {
         chirperOptionsData = data;
@@ -102,16 +109,24 @@ public class GameManager : MonoBehaviour
     public void setChirperChirpData(List<ChirpStruct> data)
     {
         chirperChirpData = data;
+        populateChirperChirps();
     }
 
     public void setChirperTrendsData(List<ChirperTrendStruct> data)
     {
         chirperTrendsData = data;
+        populateTrendsChirps();
+    }
+    public void setChirperFollowersData(List<ChirperFollowerStruct> data)
+    {
+        chirperFollowerData = data;
+        populateFollowersChirps();
     }
 
+    //Populaters
     public void populateChirperOptions()
     {
-        ChirperOptionsStruct data = chirperOptionsData[day];
+        ChirperOptionsStruct data = chirperOptionsData[day - 1];
 
         Option1Text.text = data.option_1;
         Option2Text.text = data.option_2;
@@ -119,23 +134,122 @@ public class GameManager : MonoBehaviour
         Option4Text.text = data.option_4;
     }
 
+    //This is gonna be some bad code, I'm sorry
     public void populateChirperChirps()
     {
-        ChirpStruct data = chirperChirpData[day];
-        Sprite image = null;
+        ChirpStruct data_one = chirperChirpData[0], data_two = chirperChirpData[0];
+        Sprite image = null, image2 = null;
+
+        for (int i = 0; i < chirperChirpData.Count; i++)
+        {
+            if (chirperChirpData[i].day == day)
+            {
+                data_one = chirperChirpData[i];
+                data_two = chirperChirpData[i + 1];
+                break;
+            }
+        }
+        
 
         foreach(Sprite img in profiles)
         {
-            if (data.profile_pic == img.name)
+            if (data_one.profile_pic == img.name)
             {
                 image = img;
+            }
+
+            if (data_two.profile_pic == img.name)
+            {
+                image2 = img;
+            }
+        }
+
+
+        ChirpImage[0].sprite = image;
+        ChirpNameText[0].text = data_one.chirper_name;
+        ChirpUserText[0].text = data_one.user_name;
+        ChirpContentText[0].text = data_one.chirp_content;
+
+        ChirpImage[1].sprite = image2;
+        ChirpNameText[1].text = data_two.chirper_name;
+        ChirpUserText[1].text = data_two.user_name;
+        ChirpContentText[1].text = data_two.chirp_content;
+
+    }
+
+    public void populateTrendsChirps()
+    {
+        ChirperTrendStruct data_one = chirperTrendsData[0], data_two = chirperTrendsData[0], data_three = chirperTrendsData[0], data_four = chirperTrendsData[0], data_five = chirperTrendsData[0];
+
+        for (int i = 0; i < chirperTrendsData.Count; i++)
+        {
+            if (chirperTrendsData[i].day == day)
+            {
+                data_one = chirperTrendsData[i + 0];
+                data_two = chirperTrendsData[i + 1];
+                data_three = chirperTrendsData[i + 2];
+                data_four = chirperTrendsData[i + 3];
+                data_five = chirperTrendsData[i + 4];
                 break;
             }
         }
 
-        ChirpImage[day - 1].sprite = image;
-        ChirpNameText[day - 1].text = data.chirper_name;
-        ChirpUserText[day - 1].text = data.user_name;
-        ChirpContentText[day - 1].text = data.chirp_content;
+        ChirpChirpText[0].text = data_one.trending_chirp;
+        ChirpNumberText[0].text = data_one.trending_number;
+        ChirpTitleText[0].text = data_one.trending_title;
+
+        ChirpChirpText[1].text = data_two.trending_chirp;
+        ChirpNumberText[1].text = data_two.trending_number;
+        ChirpTitleText[1].text = data_two.trending_title;
+
+        ChirpChirpText[2].text = data_three.trending_chirp;
+        ChirpNumberText[2].text = data_three.trending_number;
+        ChirpTitleText[2].text = data_three.trending_title;
+
+        ChirpChirpText[3].text = data_four.trending_chirp;
+        ChirpNumberText[3].text = data_four.trending_number;
+        ChirpTitleText[3].text = data_four.trending_title;
+
+        ChirpChirpText[4].text = data_five.trending_chirp;
+        ChirpNumberText[4].text = data_five.trending_number;
+        ChirpTitleText[4].text = data_five.trending_title;
+
+    }
+
+    public void populateFollowersChirps()
+    {
+        ChirperFollowerStruct data_one = chirperFollowerData[0], data_two = chirperFollowerData[0];
+        Sprite image = null, image2 = null;
+
+        for (int i = 0; i < chirperFollowerData.Count; i++)
+        {
+            if (chirperFollowerData[i].day == day)
+            {
+                data_one = chirperFollowerData[i];
+                data_two = chirperFollowerData[i + 1];
+                break;
+            }
+        }
+
+        foreach (Sprite img in profiles)
+        {
+            if (data_one.profile_pic == img.name)
+            {
+                image = img;
+            }
+
+            if (data_two.profile_pic == img.name)
+            {
+                image2 = img;
+            }
+        }
+
+        FollowImage[0].sprite = image;
+        FollowNameText[0].text = data_one.chirper_name;
+        ChirpUserText[0].text = data_one.user_name;
+
+        FollowImage[1].sprite = image2;
+        FollowNameText[1].text = data_two.chirper_name;
+        FollowUserText[1].text = data_two.user_name;
     }
 }

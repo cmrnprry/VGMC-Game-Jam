@@ -82,7 +82,6 @@ public class ChirperOptionsReader : MonoBehaviour
 
         for (int i = 1; i < tempList.Count; i++)
         {
-
             list.Add(ToStruct(tempList[i]));
         }
 
@@ -107,7 +106,6 @@ public class ChirperOptionsReader : MonoBehaviour
         string op4 = data[10];
         int delta4 = Int32.Parse(data[11]);
         GameManager.FollowerType type4 = determineType(data[12]);
-
 
         return new ChirperOptionsStruct(d,
         op1, delta1, type1,
