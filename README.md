@@ -4,9 +4,9 @@ This was a game mainly made in 48 hours by a team of five during the Berklee Vid
 
 
 
-Credits:
-Alex Abel       Artwork                 @saturnsh2x2
-Dayna Ambrosio	Composer/Sound Designer	@DaynaAmbrosio
-Remi Chandler	  Composer/Sound Designer	@CandleKing10
-Ryan Nuzzo	    Artist	                @damnit_dodge
-Cam Perry       Programmer              @n0t_cameron
+Credits:<br/>
+Alex Abel       Artwork                 @saturnsh2x2<br/>
+Dayna Ambrosio	Composer/Sound Designer	@DaynaAmbrosio<br/>
+Remi Chandler	  Composer/Sound Designer	@CandleKing10<br/>
+Ryan Nuzzo	    Artist	                @damnit_dodge<br/>
+Cam Perry       Programmer              @n0t_cameron<br/>
